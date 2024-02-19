@@ -1,0 +1,13 @@
+node_modules
+
+vendor
+.DS_*
+*.log
+logs
+
+*.sublime*
+
+psd
+thumb
+sketch
+build

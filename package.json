@@ -1,0 +1,27 @@
+{
+	"name": "ctx-gdpr-blocks",
+	"version": "1.0.0",
+	"description": "Add a block to your website to make it GDPR compliant.",
+	"author": "Thomas Gollenia",
+	"prettier": "@wordpress/prettier-config",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build src/index.js src/gdpr.js",
+		"start": "wp-scripts start ./src/index.js ./src/gdpr.js",
+		"make-pot": "wp i18n make-pot . languages/ctx-gdpr.pot --slug=ctx-gdpr --domain=ctx-gdpr --exclude=node_modules,src",
+		"make-json": "wp i18n make-json languages/ --no-purge",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@wordpress/prettier-config": "^1.1.1",
+		"@wordpress/scripts": "^27.1.0"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 3 versions",
+		"not dead",
+		"not ie <= 11"
+	]
+}

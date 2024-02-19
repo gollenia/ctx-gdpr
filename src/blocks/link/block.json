@@ -1,0 +1,113 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ctx-gdpr/link",
+	"title": "GDPR Link",
+	"keywords": ["link", "gdpr", "modal"],
+	"textdomain": "ctx-gdpr",
+	"description": "Display a button with a link or a modal",
+	"category": "common",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"gdprUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"gdprNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"gdprRel": {
+			"type": "string",
+			"default": ""
+		},
+		"modalFull": {
+			"type": "boolean",
+			"default": false
+		},
+		"modalTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"acceptAllButtonTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"acceptNeededButtonTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"neededCookiesLabelText": {
+			"type": "string",
+			"default": ""
+		},
+		"thirdPartyCookiesLabelText": {
+			"type": "string",
+			"default": ""
+		},
+		"thirdPartyCookiesDefault": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"color": {
+			"link": true,
+			"text": true,
+			"background": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": false,
+			"width": false,
+			"__experimentalDefaultControls": {
+				"radius": true,
+				"style": false,
+				"width": true,
+				"linked": false,
+				"color": true
+			}
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"styles": [
+		{
+			"name": "fill",
+			"label": "Fill",
+			"isDefault": true
+		},
+		{
+			"name": "outline",
+			"label": "Outline"
+		}
+	],
+	"example": {
+		"attributes": {
+			"title": "Button",
+			"url": "",
+			"newTab": false,
+			"outline": false,
+			"icon": "",
+			"iconRight": false,
+			"iconOnly": false,
+			"modalFull": false,
+			"modalTitle": "Modal Title",
+			"action": "link"
+		}
+	},
+	"editorStyle": "ctx-blocks-editor-style",
+	"editorScript": "ctx-gdpr-editor",
+	"style": "ctx-gdpr-editor-style",
+	"viewScript": "ctx-blocks-frontend",
+	"render": "file:render.php"
+}
