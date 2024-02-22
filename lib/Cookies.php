@@ -5,7 +5,7 @@
  * @since 1.0.0
  */
 
-namespace Contexis\Core;
+namespace Contexis\Cookies;
 
 class Cookies {
 
@@ -14,35 +14,49 @@ class Cookies {
 
 	public static function init() {
         $instance = new self;
-		add_action('wp_ajax_nopriv_set_consent',[$instance, 'set_consent']);
-		add_action('wp_ajax_set_consent',[$instance, 'set_consent']);
+		add_action('rest_api_init',array($instance,'register_rest'),10,1);
 		add_action('admin_init',[$instance, 'add_settings']);
+		add_action( 'rest_api_init',[$instance, 'add_settings'] );
 		add_action('admin_menu', [ $instance, 'add_settings_menu' ], 9);    
 		add_action('wp_footer', [$instance, 'add_cookie_window']);
 		
 		if(!self::get_consent_all()) {
 			add_filter('render_block',[$instance, 'remove_external_blocks'], 10, 2);
 		} 
-    }
+	}
 
-	public function set_consent() {
+	public function register_rest() {
+		register_rest_route( 'ctx-gdpr/v1', 'consent', [
+			'methods' => 'POST', 
+			'callback' => [$this, 'get_rest_data'], 
+			'permission_callback' => '__return_true'
+		], true );
+	}
+
+	public function get_rest_data(\WP_REST_Request $request) {
+		$data = $request->get_params();
+		
 		setcookie(self::$cookie_ok, "true", time()+31556926, '/', $_SERVER['HTTP_HOST']);
 
-		if(!isset($_REQUEST['all'])) wp_die();
-		
-		if($_REQUEST['all'] == 1) {
+		$result = [
+			"success" => false
+		];
+
+		if(!isset($data['all'])) return;
+
+		if($data['all'] == 1) {
 			setcookie(self::$cookie_all, "true", time()+31556926, '/', $_SERVER['HTTP_HOST']);	
-			echo "all";
+			$result['success'] = true;
 		}
 
-		if($_REQUEST['all'] == 0) {
+		if($data['all'] == 0) {
 			setcookie(self::$cookie_all, "", -1, '/', $_SERVER['HTTP_HOST']);	
 			unset($_COOKIE[self::$cookie_all]); 
-			echo "notall";
+			$result['success'] = true;
 		}
 
-		echo "OK";
-		wp_die();
+		return $result;
+		
 	}
 
 	/**
@@ -62,31 +76,31 @@ class Cookies {
 	}
 
 	public function add_settings() {
-		add_settings_section(
-			'privacy_window_section',
-			__('Privacy Consent window','ctx-theme'),
-			[$this,'print_section'],
-			'ctx-cookies'
+
+
+		register_setting(
+			'general',
+			'privacy_forbidden_blocks',
+			array(
+				'type'              => 'string',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+	
 		);
 
-		register_setting( 'ctx-cookies', 'privacy_window_text');
-		register_setting( 'ctx-cookies', 'privacy_window_button_ok');
-		register_setting( 'ctx-cookies', 'privacy_window_button_all');
-		register_setting( 'ctx-cookies', 'privacy_window_caption');
-		register_setting( 'ctx-cookies', 'privacy_forbidden_blocks');
-		register_setting( 'ctx-cookies', 'privacy_cookies_neccessary');
-		register_setting( 'ctx-cookies', 'privacy_cookies_all');
-		register_setting( 'ctx-cookies', 'privacy_cookies_explanation');
-		
-		add_settings_field( "privacy_window_text", __("Privacy window text message", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_window_text']);
-		add_settings_field( "privacy_cookies_neccessary", __("Label for neccessary cookies", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_cookies_neccessary']);
-		add_settings_field( "privacy_cookies_all", __("Label for third party cookies", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_cookies_all']);
-		add_settings_field( "privacy_cookies_explanation", __("Explanation for third party cookies", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_cookies_explanation']);
-		add_settings_field( "privacy_window_button_ok", __("Title of Button 'Save'", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_window_button_ok']);
-		add_settings_field( "privacy_window_button_all", __("Title of Button 'Accept all'", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_window_button_all']);
-		add_settings_field( "privacy_window_caption", __("Privacy window Caption", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_window_caption']);
-		add_settings_field( "privacy_forbidden_blocks", __("Critical blocks", "ctx-theme"), [$this, "print_settings"], 'ctx-cookies', 'privacy_window_section', ['field' => 'privacy_forbidden_blocks']);
-		
+		register_setting(
+			'general',
+			'privacy_block_embedded',
+			array(
+				'type'              => 'boolean',
+				'show_in_rest'      => true,
+				'default'           => true,
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+	
+		);
+
 	}
 
 	/**
@@ -166,7 +180,6 @@ class Cookies {
 	 */
 	public static function get_consent() {
 		if(get_option( 'wp_page_for_privacy_policy' ) == get_the_ID()) return true;
-		if(!get_option( 'privacy_window_text' )) return true;
 		return isset($_COOKIE[self::$cookie_ok]);
 	}
 
@@ -176,10 +189,8 @@ class Cookies {
 	 * @return bool
 	 */
 	public static function get_consent_all() {
-		if(!get_option( 'privacy_window_text' )) return true;
 		if(!isset($_COOKIE[self::$cookie_all])) return false;
-		if($_COOKIE[self::$cookie_all]) return true;
-		return false;
+		return $_COOKIE[self::$cookie_all];
 	}
 
 	/**
@@ -250,3 +261,6 @@ class Cookies {
 	<?php
 	}
 }
+
+
+Cookies::init();

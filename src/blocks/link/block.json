@@ -36,7 +36,7 @@
 			"type": "string",
 			"default": ""
 		},
-		"acceptNeededButtonTitle": {
+		"saveSettingsButtonTitle": {
 			"type": "string",
 			"default": ""
 		},
@@ -105,9 +105,9 @@
 			"action": "link"
 		}
 	},
-	"editorStyle": "ctx-blocks-editor-style",
+	"editorStyle": "ctx-gdpr-editor-style",
 	"editorScript": "ctx-gdpr-editor",
-	"style": "ctx-gdpr-editor-style",
-	"viewScript": "ctx-blocks-frontend",
+	"style": "ctx-gdpr-style",
+	"viewScript": "ctx-gdpr-frontend",
 	"render": "file:render.php"
 }

@@ -1,1 +1,3 @@
-console.log('gdpr.js');
+import cookies from './frontend/cookies.js';
+
+cookies();

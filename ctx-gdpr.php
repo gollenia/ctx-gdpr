@@ -49,7 +49,7 @@ function ctx_gdpr_init() {
 			$script_asset['version']
 		);
 		wp_enqueue_script('ctx-gdpr-frontend', plugin_dir_url(__FILE__) . "build/gdpr.js", [], false, true);
-		wp_enqueue_style('ctx-gdpr-frontend', plugin_dir_url(__FILE__) . "build/gdpr.css", [], false);
+		//wp_enqueue_style('ctx-gdpr-frontend', plugin_dir_url(__FILE__) . "build/gdpr.css", [], false);
 	}
 
 
@@ -60,11 +60,9 @@ function ctx_gdpr_init() {
 
 add_action( 'init', 'ctx_gdpr_init' );
 
-
-
-
 function ctx_gdpr_load_textdomain() {
 	load_plugin_textdomain('ctx-gdpr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 }
 add_action( 'plugins_loaded', 'ctx_gdpr_load_textdomain' );
 
+require_once __DIR__ . '/lib/Cookies.php';
