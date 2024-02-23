@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "Add a block to your website to make it GDPR compliant.",
 	"author": "Thomas Gollenia",
+	"repository": "https://github.com/gollenia/ctx-gdpr",
 	"prettier": "@wordpress/prettier-config",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
