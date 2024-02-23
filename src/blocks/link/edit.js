@@ -17,17 +17,18 @@ import { __ } from '@wordpress/i18n';
 
 export default function edit({ ...props }) {
 	const {
-		title,
-		modalFull,
-		icon,
-		modalTitle,
-		saveSettingsButtonTitle,
-		neededCookiesLabelText,
-		thirdPartyCookiesLabelText,
-		thirdPartyCookiesDefault,
-	} = props.attributes;
-
-	const setAttributes = props.setAttributes;
+		attributes: {
+			title,
+			modalFull,
+			icon,
+			modalTitle,
+			saveSettingsButtonTitle,
+			neededCookiesLabelText,
+			thirdPartyCookiesLabelText,
+			thirdPartyCookiesDefault,
+		},
+		setAttributes,
+	} = props;
 
 	const template = [
 		[
@@ -59,7 +60,7 @@ export default function edit({ ...props }) {
 				<RichText
 					tagName="span"
 					value={title}
-					onChange={(value) => setAttributes({ title: value })}
+					onChange={(title) => setAttributes({ title })}
 					placeholder={__('Cookie Settings', 'ctx-gdpr')}
 				/>
 			</div>
