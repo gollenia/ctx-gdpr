@@ -20,11 +20,10 @@ import { useEntityProp } from '@wordpress/core-data';
  */
 const Inspector = (props) => {
 	const {
-		attributes: { modalTitle, modalFull },
+		attributes: { modalTitle, modalFull, icon },
 		setAttributes,
 		showModal,
 		setShowModal,
-		icon,
 	} = props;
 
 	const [forbiddenBlocks, setForbiddenBlocks] = useEntityProp(
@@ -66,7 +65,7 @@ const Inspector = (props) => {
 					<TextControl
 						label={__('Icon', 'ctx-gdpr')}
 						value={icon}
-						onChange={(value) => setAttributes({ icon: value })}
+						onChange={(icon) => setAttributes({ icon })}
 					/>
 
 					<Button
