@@ -17,6 +17,7 @@ on:
 name: Create Release
 jobs:
     build:
+        permissions: write-all
         name: Create Release
         runs-on: ubuntu-latest
         steps:
