@@ -16,11 +16,10 @@ import { createPortal, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 export default function edit({ ...props }) {
-	const { clientId } = props;
-
 	const {
 		title,
 		modalFull,
+		icon,
 		modalTitle,
 		saveSettingsButtonTitle,
 		neededCookiesLabelText,
@@ -53,15 +52,20 @@ export default function edit({ ...props }) {
 
 	return (
 		<div {...blockProps}>
-			<RichText
-				tagName="span"
-				value={title}
-				onChange={(value) => props.setAttributes({ title: value })}
-				placeholder={__('Cookie Settings', 'ctx-gdpr')}
-				onDoubleClick={() => {
-					setShowModal(true);
-				}}
-			/>
+			<div className="ctx-gdpr-button">
+				<i className="material-icons material-symbols-outlined">
+					{icon}
+				</i>
+				<RichText
+					tagName="span"
+					value={title}
+					onChange={(value) => props.setAttributes({ title: value })}
+					placeholder={__('Cookie Settings', 'ctx-gdpr')}
+					onDoubleClick={() => {
+						setShowModal(true);
+					}}
+				/>
+			</div>
 			<Inspector
 				{...props}
 				showModal={showModal}

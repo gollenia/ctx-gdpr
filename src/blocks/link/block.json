@@ -12,6 +12,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
 		"gdprUrl": {
 			"type": "string",
 			"default": ""

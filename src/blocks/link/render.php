@@ -1,10 +1,14 @@
 <?php
-	$title = empty($attributes['title']) ? __("Cookie Settings", "ctx-gdpr") : $attributes['title'];
+	$title = $attributes['title'] ?? "";
+	$icon = $attributes['icon'] ?? "";
 	$id = 'modal-' . wp_rand(0, 1000);
 	$block_attributes = get_block_wrapper_attributes();
 	
 ?>
-<a <?php echo $block_attributes ?> href="#/" id="ctx-gdpr-link"><?php echo $title ?></a>
+<a <?php echo $block_attributes ?> href="#/" id="ctx-gdpr-link">
+<?php echo $icon ? "<i class=\"material-icons\">" . $icon . "</i>" : "" ?>
+<?php echo $title ? "<span>" . $title . "</span>" : "" ?>
+</a>
 
 <?php
 

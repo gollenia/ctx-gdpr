@@ -7,6 +7,7 @@ import {
 	CheckboxControl,
 	ComboboxControl,
 	PanelBody,
+	TextControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -23,6 +24,7 @@ const Inspector = (props) => {
 		setAttributes,
 		showModal,
 		setShowModal,
+		icon,
 	} = props;
 
 	const [forbiddenBlocks, setForbiddenBlocks] = useEntityProp(
@@ -61,36 +63,45 @@ const Inspector = (props) => {
 						}
 					/>
 
+					<TextControl
+						label={__('Icon', 'ctx-gdpr')}
+						value={icon}
+						onChange={(value) => setAttributes({ icon: value })}
+					/>
+
 					<Button
-						label={__('Open Modal', 'ctx-gdpr')}
+						label={__('Edit Popup', 'ctx-gdpr')}
 						value={modalTitle}
 						onClick={(value) => setShowModal(true)}
+						variant="secondary"
 					>
-						{__('Open Modal', 'ctx-gdpr')}
+						{__('Edit Popup', 'ctx-gdpr')}
 					</Button>
 				</PanelBody>
 
 				<PanelBody
-					title={__('Forboidden Blocks', 'ctx-gdpr')}
+					title={__('Forbidden Blocks', 'ctx-gdpr')}
 					initialOpen={true}
 				>
 					<p>
 						{__(
-							'You can define here, which blocks are forbidden when the user did not accept 3rd party cookies. Use the block name, separated by comma.',
+							'You can define here, which blocks are prohibited when the user did not accept 3rd party cookies.',
 							'ctx-gdpr'
 						)}
 					</p>
 					<CheckboxControl
-						label={__('Block Embedded', 'ctx-gdpr')}
+						label={__('Embedded Blocks', 'ctx-gdpr')}
 						checked={blockEmbedded}
 						onChange={(value) => setBlockEmbedded(!blockEmbedded)}
 					/>
 
 					<ComboboxControl
-						label={__('Forbidden Blocks', 'ctx-gdpr')}
+						label={__('Other Blocks', 'ctx-gdpr')}
 						value={forbiddenBlocks}
 						onChange={(value) => {
-							const blocks = forbiddenBlocks.split(',');
+							const blocks = forbiddenBlocks.length
+								? forbiddenBlocks.split(',')
+								: [];
 
 							blocks.push(value);
 

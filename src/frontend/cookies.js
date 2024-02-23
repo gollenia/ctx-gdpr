@@ -9,7 +9,7 @@ const cookies = () => {
 		});
 
 		const result = await response.json();
-		console.log('result', result);
+
 		return result;
 	};
 
@@ -18,7 +18,6 @@ const cookies = () => {
 			'ctx-gdpr-accept-third-party'
 		);
 
-		console.log('consentCheckBox', consentCheckBox);
 		const okClick = document.getElementById('ctx-gdpr-modal-save');
 		if (!okClick) return;
 		okClick.addEventListener('click', () => {

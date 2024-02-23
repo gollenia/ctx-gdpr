@@ -17,7 +17,6 @@ const { name } = metadata;
 
 const settings = {
 	icon,
-
 	edit,
 	save: () => {
 		return <InnerBlocks.Content />;
