@@ -59,11 +59,8 @@ export default function edit({ ...props }) {
 				<RichText
 					tagName="span"
 					value={title}
-					onChange={(value) => props.setAttributes({ title: value })}
+					onChange={(value) => setAttributes({ title: value })}
 					placeholder={__('Cookie Settings', 'ctx-gdpr')}
-					onDoubleClick={() => {
-						setShowModal(true);
-					}}
 				/>
 			</div>
 			<Inspector
