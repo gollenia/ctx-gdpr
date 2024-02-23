@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-21T16:20:19+00:00\n"
+"POT-Creation-Date: 2024-02-22T16:34:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: ctx-gdpr\n"
@@ -26,35 +26,35 @@ msgstr ""
 msgid "Thomas Gollenia"
 msgstr ""
 
-#: build/blocks/link/render.php:2
-#: build/blocks/link/render.php:21
-#: build/index.js:74
-#: build/index.js:84
-#: build/index.js:96
-#: build/index.js:61
-#: build/index.js:85
+#: build/blocks/link/render.php:24
+#: build/index.js:78
+#: build/index.js:88
+#: build/index.js:100
+#: build/index.js:65
+#: build/index.js:79
+#: build/index.js:90
 msgid "Cookie Settings"
 msgstr ""
 
-#: build/blocks/link/render.php:32
+#: build/blocks/link/render.php:35
 msgid "Necessary Cookies"
 msgstr ""
 
-#: build/blocks/link/render.php:39
-#: build/index.js:139
-#: build/index.js:140
+#: build/blocks/link/render.php:42
+#: build/index.js:143
+#: build/index.js:145
 msgid "Accept third party cookies"
 msgstr ""
 
-#: build/blocks/link/render.php:44
-#: build/index.js:155
-#: build/index.js:166
+#: build/blocks/link/render.php:47
+#: build/index.js:159
+#: build/index.js:171
 msgid "Save Settings"
 msgstr ""
 
-#: build/blocks/link/render.php:45
-#: build/index.js:148
-#: build/index.js:156
+#: build/blocks/link/render.php:48
+#: build/index.js:152
+#: build/index.js:161
 msgid "Accept All"
 msgstr ""
 
@@ -63,9 +63,51 @@ msgstr ""
 msgid "This website collects cookies to deliver better user experience. By clicking \"accept all\" you you consent to our use of cookies. You can also choose what cookies you want to accept or reject. You can change your cookie settings at any time. Learn more in our <a href=\"#\">privacy policy.</a>"
 msgstr ""
 
-#: build/index.js:119
-#: build/index.js:112
+#: build/index.js:123
+#: build/index.js:117
 msgid "Accept required cookies"
+msgstr ""
+
+#: build/index.js:291
+#: build/index.js:279
+msgid "Appearance"
+msgstr ""
+
+#: build/index.js:294
+#: build/index.js:283
+msgid "Full screen size"
+msgstr ""
+
+#: build/index.js:300
+#: build/index.js:304
+#: build/index.js:291
+#: build/index.js:296
+msgid "Edit Popup"
+msgstr ""
+
+#: build/index.js:305
+#: build/index.js:300
+msgid "Icon"
+msgstr ""
+
+#: build/index.js:311
+#: build/index.js:307
+msgid "Forbidden Blocks"
+msgstr ""
+
+#: build/index.js:313
+#: build/index.js:311
+msgid "You can define here, which blocks are prohibited when the user did not accept 3rd party cookies."
+msgstr ""
+
+#: build/index.js:314
+#: build/index.js:317
+msgid "Embedded Blocks"
+msgstr ""
+
+#: build/index.js:318
+#: build/index.js:323
+msgid "Other Blocks"
 msgstr ""
 
 #: build/blocks/link/block.json
