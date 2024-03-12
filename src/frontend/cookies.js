@@ -1,6 +1,6 @@
 const cookies = () => {
 	const sendConsentRequest = async (all = false) => {
-		const response = await fetch('wp-json/ctx-gdpr/v1/consent', {
+		const response = await fetch('/wp-json/ctx-gdpr/v1/consent', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
