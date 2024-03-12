@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     CTX GDPR 
  * Description:     Additional Blocks for GDPR
- * Version:         1.0
+ * Version:         1.0.1
  * Author:          Thomas Gollenia
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
