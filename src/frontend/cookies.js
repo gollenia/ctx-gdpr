@@ -1,48 +1,33 @@
+import apiFetch from '@wordpress/api-fetch';
+
 const cookies = () => {
-	const sendConsentRequest = async (all = false) => {
-		const response = await fetch('/wp-json/ctx-gdpr/v1/consent', {
+	const sendConsent = (event) => {
+		const all = event.target.dataset.all === '1';
+		apiFetch({
+			path: '/ctx-gdpr/v2/consent',
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ all: all ? 1 : 0 }),
-		});
-
-		const result = await response.json();
-
-		return result;
+			data: { all },
+		})
+			.then((response) => {
+				if (response.success) {
+					document
+						.getElementById('ctx-gdpr-modal')
+						.classList.remove('is-visible');
+					if (!all) return;
+					window.location.reload();
+				}
+			})
+			.catch((error) => {
+				console.error('error', error);
+			});
 	};
 
 	window.addEventListener('DOMContentLoaded', () => {
-		const consentCheckBox = document.getElementById(
-			'ctx-gdpr-accept-third-party'
-		);
-
-		const okClick = document.getElementById('ctx-gdpr-modal-save');
-		if (!okClick) return;
-		okClick.addEventListener('click', () => {
-			sendConsentRequest(consentCheckBox.checked).then((result) => {
-				if (result.success) {
-					document
-						.getElementById('ctx-gdpr-modal')
-						.classList.remove('is-visible');
-				}
+		document
+			.querySelectorAll('.ctx-gdpr-consent-button')
+			.forEach((button) => {
+				button.addEventListener('click', sendConsent);
 			});
-		});
-
-		const allClick = document.getElementById('ctx-gdpr-modal-accept-all');
-		if (!allClick) return;
-		allClick.addEventListener('click', () => {
-			consentCheckBox.checked = true;
-			sendConsentRequest(consentCheckBox.checked).then((result) => {
-				if (result.success) {
-					document
-						.getElementById('ctx-gdpr-modal')
-						.classList.remove('is-visible');
-					window.location.reload();
-				}
-			});
-		});
 
 		const openDialog = document.getElementById('ctx-gdpr-link');
 

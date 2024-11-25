@@ -23,7 +23,7 @@ add_action('wp_footer', function() use ($attributes, $content, $id) {
 				<div class="ctx-gdpr-modal-header">
 					<div class="modal__title">
 						<h2><?php echo empty($attributes['modalTitle']) ? __('Cookie Settings', 'ctx-gdpr') : $attributes['modalTitle']; ?></h2>
-						<button @click="showModal = false" class="modal__close"></button>
+							
 					</div>
 				</div>
 				<div class="ctx-gdpr-modal-body">	
@@ -45,8 +45,8 @@ add_action('wp_footer', function() use ($attributes, $content, $id) {
 					</div>
 				</div>
 				<div class="ctx-gdpr-modal-footer">
-					<button class="button button--primary ctx-gdpr-modal-save" id="ctx-gdpr-modal-save"><?php echo empty($attributes['saveSettingsButtonTitle']) ? __("Save Settings", "ctx-gdpr") : $attributes['saveSettingsButtonTitle']; ?></button>
-					<button class="button button--primary ctx-gdpr-modal-accept-all" id="ctx-gdpr-modal-accept-all"><?php echo empty($attributes['acceptAllButtonTitle']) ? __("Accept All", "ctx-gdpr") : $attributes['acceptAllButtonTitle']; ?></button>
+					<button data-all="0" class="button button--primary ctx-gdpr-consent-button ctx-gdpr-modal-save" id="ctx-gdpr-modal-save"><?php echo empty($attributes['saveSettingsButtonTitle']) ? __("Save Settings", "ctx-gdpr") : $attributes['saveSettingsButtonTitle']; ?></button>
+					<button data-all="1" class="button button--primary ctx-gdpr-consent-button ctx-gdpr-modal-accept-all" id="ctx-gdpr-modal-accept-all"><?php echo empty($attributes['acceptAllButtonTitle']) ? __("Accept All", "ctx-gdpr") : $attributes['acceptAllButtonTitle']; ?></button>
 				</div>
 			</div>
 		</div> 
