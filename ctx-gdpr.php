@@ -66,6 +66,6 @@ function ctx_gdpr_load_textdomain() {
 add_action( 'plugins_loaded', 'ctx_gdpr_load_textdomain' );
 
 require_once __DIR__ . '/lib/Cookies.php';
-require_once __DIR__ . '/lib/Update.php';
 
-\Contexis\Cookies\Update::init('ctx-gdpr');
+
+
