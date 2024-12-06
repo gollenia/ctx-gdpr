@@ -26,6 +26,7 @@ export default function edit({ ...props }) {
 			neededCookiesLabelText,
 			thirdPartyCookiesLabelText,
 			thirdPartyCookiesDefault,
+			forbiddenBlocks,
 		},
 		setAttributes,
 	} = props;

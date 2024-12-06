@@ -55,6 +55,10 @@
 		"thirdPartyCookiesDefault": {
 			"type": "boolean",
 			"default": true
+		},
+		"forbiddenBlocks": {
+			"type": "array",
+			"default": []
 		}
 	},
 
