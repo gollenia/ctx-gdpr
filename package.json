@@ -12,7 +12,8 @@
 		"start": "wp-scripts start ./src/index.js ./src/gdpr.js",
 		"make-pot": "wp i18n make-pot . languages/ctx-gdpr.pot --slug=ctx-gdpr --domain=ctx-gdpr --exclude=node_modules,src",
 		"make-json": "wp i18n make-json languages/ --no-purge",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"release": "wp-github-plugin ctx-gdpr.php --tag"
 	},
 	"devDependencies": {
 		"@wordpress/api-fetch": "^7.12.0",
