@@ -14,11 +14,11 @@
 		"make-json": "wp i18n make-json languages/ --no-purge",
 		"packages-update": "wp-scripts packages-update"
 	},
-	"dependencies": {},
 	"devDependencies": {
+		"@wordpress/api-fetch": "^7.12.0",
 		"@wordpress/prettier-config": "^4.12.0",
 		"@wordpress/scripts": "^30.5.1",
-		"@wordpress/api-fetch": "^7.12.0"
+		"wp-github-plugin": "^1.0.4"
 	},
 	"browserslist": [
 		"> 1%",

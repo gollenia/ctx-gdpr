@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     CTX GDPR 
  * Description:     Additional Blocks for GDPR
- * Version:         1.0.1
+ * Version:         1.0.2
  * Author:          Thomas Gollenia
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,10 @@ function ctx_gdpr_load_textdomain() {
 add_action( 'plugins_loaded', 'ctx_gdpr_load_textdomain' );
 
 require_once __DIR__ . '/lib/Cookies.php';
+require_once __DIR__ . '/lib/Update.php';
 
-
-
+new \Contexis\Cookies\Update(
+	__FILE__,
+	'gollenia',
+	'ctx-gdpr'
+);
