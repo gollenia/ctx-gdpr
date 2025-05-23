@@ -1,6 +1,6 @@
 {
   "name": "ctx-gdpr-blocks",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Add a block to your website to make it GDPR compliant.",
   "author": "Thomas Gollenia",
   "repository": "https://github.com/gollenia/ctx-gdpr",
